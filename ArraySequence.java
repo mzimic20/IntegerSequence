@@ -14,9 +14,12 @@ public class ArraySequence implements IntegerSequence {
   }
 
   public ArraySequence(IntegerSequence otherseq) {
+    currentIndex = 0;
+    data = new int[ otherseq.length() ];
     for(int i = 0; i < otherseq.length(); i++) {
       data[i] = otherseq.next();
     }
+    otherseq.reset();
   }
 
   public void reset() {
@@ -29,12 +32,15 @@ public class ArraySequence implements IntegerSequence {
   }
 
   public boolean hasNext() {
-    return currentIndex < data.length - 1;
+    return currentIndex < data.length;
   }
 
   public int next() {
-    currentIndex++;
-    return data[currentIndex];
+    if ( hasNext() ) {
+      currentIndex++;
+      return data[currentIndex - 1];
+    }
+    else throw new NoSuchElementException("NoSuchElementException: No elements beyond " + (currentIndex - 1));
   }
 
 }

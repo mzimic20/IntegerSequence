@@ -7,13 +7,11 @@ public class Range implements IntegerSequence {
   public Range(int s, int e) {
     start = s;
     end = e;
-    current = s;
+    current = start;
   }
 
   public void reset() {
-    start = 0;
-    end = 0;
-    current = 0;
+    current = start;
   }
 
   public int length() {
@@ -21,7 +19,7 @@ public class Range implements IntegerSequence {
   }
 
   public boolean hasNext() {
-    return current < end + 1;
+    return current <= end;
   }
 
   public int next() {
