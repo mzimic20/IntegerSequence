@@ -19,15 +19,15 @@ public class Range implements IntegerSequence {
   }
 
   public boolean hasNext() {
-    return current <= end;
+    return start <= current && current <= end;
   }
 
   public int next() {
-    if ( hasNext() ) {
-      current++;
-      return current - 1;
+    if ( !hasNext() ) {
+      throw new NoSuchElementException("NoSuchElementException: No elements beyond " + (current - 1));
     }
-    else throw new NoSuchElementException("NoSuchElementException: No elements beyond " + (current - 1));
+    current++;
+    return current - 1;
   }
 
 }

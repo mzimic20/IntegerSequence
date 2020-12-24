@@ -16,7 +16,7 @@ public class ArraySequence implements IntegerSequence {
   public ArraySequence(IntegerSequence otherseq) {
     currentIndex = 0;
     data = new int[ otherseq.length() ];
-    for(int i = 0; i < otherseq.length(); i++) {
+    for(int i = 0; i < otherseq.length() - 1; i++) {
       data[i] = otherseq.next();
     }
     otherseq.reset();
@@ -24,7 +24,6 @@ public class ArraySequence implements IntegerSequence {
 
   public void reset() {
     currentIndex = 0;
-    data = new int[0];
   }
 
   public int length() {
@@ -32,7 +31,7 @@ public class ArraySequence implements IntegerSequence {
   }
 
   public boolean hasNext() {
-    return currentIndex < data.length;
+    return 0 <= currentIndex && currentIndex < data.length;
   }
 
   public int next() {
